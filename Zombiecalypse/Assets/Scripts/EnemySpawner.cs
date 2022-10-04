@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-public class ProjectileSpawner : Spawner
+public class EnemySpawner : Spawner
 {
+    public GameObject enemyPrefab;
     /*
     private void Awake()
     {
@@ -13,19 +15,24 @@ public class ProjectileSpawner : Spawner
     {
         yield return spawnerData.Spawn(maxSpawnCount);
     }*/
-    /*
+
+    public void Start()
+    {
+        StartCoroutine(Spawn(30));
+    }
+
     public override IEnumerator Spawn(int maxSpawnCount, GameObject spawnTarget = null)
     {
-        spawnerData.SpawnedCount = 0;
-        yield return new WaitForSeconds(spawnerData.spawnDelay);
-        while (spawnerData.SpawnedCount < maxSpawnCount)
+        SpawnedCount = 0;
+        yield return new WaitForSeconds(SpawnDelay);
+        while (SpawnedCount < maxSpawnCount)
         {
-            GameObject enemy = spawnerData.pool.InstantiateFromPool();
-            spawnerData.SpawnedCount++;
+            GameObject enemy = Instantiate(enemyPrefab);
+            SpawnedCount++;
             Utility.SetSpawnLocation(enemy);
-            yield return new WaitForSeconds(spawnerData.spawnInterval);
+            yield return new WaitForSeconds(SpawnInterval);
         }
 
         yield return null;
-    }*/
+    }
 }

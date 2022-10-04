@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    private float speed = 4f;
+    private float speed = 10f;
     private Vector2 dir;
 
 
@@ -20,7 +21,15 @@ public class bullet : MonoBehaviour
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, dir, speed * Time.deltaTime);
+    }
 
-        
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        Destroy(gameObject);
     }
 }
