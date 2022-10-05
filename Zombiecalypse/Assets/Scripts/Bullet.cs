@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 10f;
+    private float speed = 30f;
     private Vector2 dir;
 
 
